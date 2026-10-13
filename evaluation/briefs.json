@@ -1,0 +1,92 @@
+{
+  "status": "not-run",
+  "briefs": [
+    {
+      "id": "p01",
+      "prompt": "Find Mirror\u2019s Edge-style wall-running for Godot 4; C# is allowed. Identify a native reference and integration work.",
+      "relevant_records": [
+        "noshot",
+        "faith-runner"
+      ],
+      "expected": "Identify NOSHOT as a Godot C# reference, cite its state and setup requirements. Faith Runner is an optional Rust adaptation reference, not a native Godot implementation."
+    },
+    {
+      "id": "p02",
+      "prompt": "Find native GDScript wall-running for Godot; I cannot use .NET or a Rust extension.",
+      "relevant_records": [
+        "noshot",
+        "faith-runner"
+      ],
+      "expected": "State that this seed has no matching native GDScript implementation. Explain why NOSHOT and Faith Runner fail the language constraint; do not claim no implementation exists elsewhere."
+    },
+    {
+      "id": "p03",
+      "prompt": "I have a Rust engine with swept-box collision and overlap queries. Which movement implementation has an appropriate boundary?",
+      "relevant_records": [
+        "faith-runner"
+      ],
+      "expected": "Cite Faith Runner World and Controller::step; explain adapter work and unresolved root license declaration. Do not certify integration."
+    },
+    {
+      "id": "p04",
+      "prompt": "I want to play parkour in Garry\u2019s Mod, not build an engine adapter. What source should I investigate?",
+      "relevant_records": [
+        "beatrun"
+      ],
+      "expected": "Identify Beatrun as a gamemode; cite its host hooks and wall-running source. Do not claim this project ran or validated its installation."
+    },
+    {
+      "id": "p05",
+      "prompt": "Can I paste Beatrun wall-running directly into my Godot controller?",
+      "relevant_records": [
+        "beatrun",
+        "noshot"
+      ],
+      "expected": "Explain Garry\u2019s Mod Lua/player/trace dependencies and adaptation work; identify native Godot C# reference if allowed. Do not describe a Lua snippet as portable."
+    },
+    {
+      "id": "p06",
+      "prompt": "Find a Minecraft 1.21.1 parkour mod and tell me what is known about its license and loaders.",
+      "relevant_records": [
+        "parks-edge"
+      ],
+      "expected": "Identify Park\u2019s Edge and cite pinned build properties. Keep CC0 manifest versus MIT listing conflict visible; loader support is configured, not build-tested."
+    },
+    {
+      "id": "p07",
+      "prompt": "Does the seed prove any implementation feels identical to Mirror\u2019s Edge?",
+      "relevant_records": [
+        "faith-runner",
+        "still-alive"
+      ],
+      "expected": "No. Separate upstream provenance/fidelity claims from measured behavior; runtime checks are not-run."
+    },
+    {
+      "id": "p08",
+      "prompt": "I need basic Unity jumping and crouch sliding, not a complete parkour port.",
+      "relevant_records": [
+        "dani-fps",
+        "still-alive"
+      ],
+      "expected": "Identify Dani\u2019s small movement baseline and its Rigidbody/input dependencies; explain why Still Alive has a larger project integration boundary."
+    },
+    {
+      "id": "p09",
+      "prompt": "Which cataloged wall-running controller has verified server-authoritative multiplayer?",
+      "relevant_records": [
+        "parks-edge",
+        "beatrun"
+      ],
+      "expected": "State that no seed record has that verification. Networking code or a multiplayer host does not prove authoritative movement correctness."
+    },
+    {
+      "id": "p10",
+      "prompt": "Compare Unity wall-running and vault references with source entry points and reuse caveats.",
+      "relevant_records": [
+        "still-alive",
+        "dani-fps"
+      ],
+      "expected": "Cite Still Alive move classes and full-project dependencies, unresolved root license and documented bugs. Dani has jump/slide evidence, not reviewed wall-running/vault code."
+    }
+  ]
+}

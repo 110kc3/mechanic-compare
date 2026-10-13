@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Mechanic Compare seed dataset",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "reviewed_at", "implementations"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "reviewed_at": {"type": "string", "format": "date"},
+    "implementations": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/implementation"}}
+  },
+  "$defs": {
+    "strings": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "fact": {
+      "type": "object", "additionalProperties": false,
+      "required": ["text", "evidence"],
+      "properties": {"text": {"type": "string", "minLength": 1}, "evidence": {"$ref": "#/$defs/strings"}}
+    },
+    "evidence": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "kind", "path", "url", "sha256", "symbols"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z][a-z0-9-]*$"},
+        "kind": {"enum": ["code", "documentation", "license", "external-listing"]},
+        "path": {"type": ["string", "null"]},
+        "url": {"type": "string", "format": "uri", "pattern": "^https://"},
+        "sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"},
+        "symbols": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "implementation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "name", "repository", "revision", "reviewed_at", "engine", "languages", "shape", "summary", "context_evidence", "mechanics", "integration", "requirements", "limitations", "license", "runtime_check", "evidence"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z][a-z0-9-]*$"},
+        "name": {"type": "string", "minLength": 1},
+        "repository": {"type": "string", "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"},
+        "revision": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+        "reviewed_at": {"type": "string", "format": "date"},
+        "engine": {"enum": ["engine-independent", "garrys-mod", "godot", "minecraft", "unity"]},
+        "languages": {"$ref": "#/$defs/strings"},
+        "shape": {"enum": ["subsystem", "gamemode", "controller-project", "mod", "game-port", "movement-baseline"]},
+        "summary": {"type": "string", "minLength": 1},
+        "context_evidence": {"$ref": "#/$defs/strings"},
+        "mechanics": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["id", "text", "evidence"],
+            "properties": {
+              "id": {"enum": ["wall-run", "wall-climb", "vault", "slide", "jump", "ledge-grab"]},
+              "text": {"type": "string", "minLength": 1},
+              "evidence": {"$ref": "#/$defs/strings"}
+            }
+          }
+        },
+        "integration": {"$ref": "#/$defs/fact"},
+        "requirements": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/fact"}},
+        "limitations": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/fact"}},
+        "license": {
+          "type": "object", "additionalProperties": false,
+          "required": ["status", "declarations", "note"],
+          "properties": {
+            "status": {"enum": ["declared", "unknown", "conflicting"]},
+            "declarations": {
+              "type": "array",
+              "items": {"type": "object", "additionalProperties": false, "required": ["identifier", "evidence"], "properties": {"identifier": {"type": "string", "minLength": 1}, "evidence": {"$ref": "#/$defs/strings"}}}
+            },
+            "note": {"type": "string", "minLength": 1}
+          }
+        },
+        "runtime_check": {
+          "type": "object", "additionalProperties": false,
+          "required": ["status", "evidence"],
+          "properties": {"status": {"enum": ["not-run", "passed", "failed"]}, "evidence": {"type": ["string", "null"], "format": "uri"}}
+        },
+        "evidence": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/evidence"}}
+      }
+    }
+  }
+}

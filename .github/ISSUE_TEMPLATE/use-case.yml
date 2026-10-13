@@ -1,0 +1,23 @@
+name: Report a comparison use case
+description: Tell us whether the comparison changed a decision or saved investigation.
+title: "[Use case] "
+body:
+  - type: textarea
+    id: target
+    attributes:
+      label: Target and constraints
+      description: Engine/game, version, language, required moves and dependencies you can accept.
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: What happened?
+      description: Candidates considered, what the comparison changed, what you still had to investigate. Estimates of time saved are welcome; identify them as estimates.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence or missing information
+      description: Optional public links or reproducible notes. Please omit private project files and game assets.

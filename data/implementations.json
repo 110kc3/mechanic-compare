@@ -1,0 +1,865 @@
+{
+  "schema_version": "1.0",
+  "reviewed_at": "2026-10-13",
+  "implementations": [
+    {
+      "id": "faith-runner",
+      "name": "Faith Runner",
+      "repository": "tnrjns/faith-runner",
+      "revision": "9ddef190d73be4cbb7a2ae30bde67018cbe15eb9",
+      "reviewed_at": "2026-10-13",
+      "engine": "engine-independent",
+      "languages": [
+        "Rust"
+      ],
+      "shape": "subsystem",
+      "summary": "Mirror’s Edge-style movement in a separate Rust crate, with a Bevy demonstration project.",
+      "context_evidence": [
+        "readme",
+        "world"
+      ],
+      "mechanics": [
+        {
+          "id": "wall-run",
+          "text": "Controller wall-running state and wall probes.",
+          "evidence": [
+            "controller"
+          ]
+        },
+        {
+          "id": "vault",
+          "text": "Vault state advances movement over or onto obstacles.",
+          "evidence": [
+            "controller"
+          ]
+        },
+        {
+          "id": "slide",
+          "text": "Slide state controls movement while crouched at speed.",
+          "evidence": [
+            "controller"
+          ]
+        },
+        {
+          "id": "ledge-grab",
+          "text": "Ledge hang and shimmy states are present.",
+          "evidence": [
+            "controller"
+          ]
+        }
+      ],
+      "integration": {
+        "text": "The host supplies box sweep and overlap queries through World, feeds input and steps Controller; optional fixtures describe special traversal objects. These boundaries still need a host adapter.",
+        "evidence": [
+          "world",
+          "controller"
+        ]
+      },
+      "requirements": [
+        {
+          "text": "The movement crate depends on glam; the demonstration application uses Bevy.",
+          "evidence": [
+            "crate",
+            "readme"
+          ]
+        },
+        {
+          "text": "Original body, animation and sound loading uses the user’s Mirror’s Edge install; the README describes procedural arms when those files are unavailable.",
+          "evidence": [
+            "readme"
+          ]
+        }
+      ],
+      "limitations": [
+        {
+          "text": "Tuning distinguishes values attributed to original class defaults from guessed values; this is provenance in source comments, not independently measured fidelity.",
+          "evidence": [
+            "tuning"
+          ]
+        },
+        {
+          "text": "Engine-independent source does not establish an existing adapter for every target engine.",
+          "evidence": [
+            "world",
+            "readme"
+          ]
+        }
+      ],
+      "license": {
+        "status": "unknown",
+        "declarations": [],
+        "note": "No root license file was found during inspection of this revision; terms remain unresolved."
+      },
+      "runtime_check": {
+        "status": "not-run",
+        "evidence": null
+      },
+      "evidence": [
+        {
+          "id": "readme",
+          "kind": "documentation",
+          "path": "README.md",
+          "url": "https://github.com/tnrjns/faith-runner/blob/9ddef190d73be4cbb7a2ae30bde67018cbe15eb9/README.md",
+          "sha256": "1d5a23e9bc81a8bb208fb9b3e12fc3e46c8e3fc1790ec72de51d2cc50ddb7379",
+          "symbols": []
+        },
+        {
+          "id": "crate",
+          "kind": "documentation",
+          "path": "crates/faith_move/Cargo.toml",
+          "url": "https://github.com/tnrjns/faith-runner/blob/9ddef190d73be4cbb7a2ae30bde67018cbe15eb9/crates/faith_move/Cargo.toml",
+          "sha256": "a49636d7b304840d26a7975744f4b0ff3d0275b88ed5455bf1637881c9edbccb",
+          "symbols": [
+            "glam"
+          ]
+        },
+        {
+          "id": "world",
+          "kind": "code",
+          "path": "crates/faith_move/src/world.rs",
+          "url": "https://github.com/tnrjns/faith-runner/blob/9ddef190d73be4cbb7a2ae30bde67018cbe15eb9/crates/faith_move/src/world.rs",
+          "sha256": "03412690a928c836d74692479623a0f1d6d11493a0b5809023e41854e232ce99",
+          "symbols": [
+            "pub trait World",
+            "fn sweep",
+            "fn overlaps"
+          ]
+        },
+        {
+          "id": "controller",
+          "kind": "code",
+          "path": "crates/faith_move/src/controller.rs",
+          "url": "https://github.com/tnrjns/faith-runner/blob/9ddef190d73be4cbb7a2ae30bde67018cbe15eb9/crates/faith_move/src/controller.rs",
+          "sha256": "ba721ee210485c57c652a021f981e4c0bf677fbc41ee12cc9d0b6c1b85ef4d49",
+          "symbols": [
+            "pub struct Controller",
+            "pub fn step",
+            "fn wallrun",
+            "fn slide",
+            "fn hang",
+            "fn vault_step"
+          ]
+        },
+        {
+          "id": "tuning",
+          "kind": "code",
+          "path": "crates/faith_move/src/tuning.rs",
+          "url": "https://github.com/tnrjns/faith-runner/blob/9ddef190d73be4cbb7a2ae30bde67018cbe15eb9/crates/faith_move/src/tuning.rs",
+          "sha256": "a9fa6a1fbb162629d76b54908854ff9181f36c3c2ea1facf9885cedb2be4bba6",
+          "symbols": [
+            "guess",
+            "ME:"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "beatrun",
+      "name": "Beatrun Community Edition",
+      "repository": "JonnyBro/beatrun",
+      "revision": "d176729c9bdd2491208a9bd2e1aee0f4b715f25f",
+      "reviewed_at": "2026-10-13",
+      "engine": "garrys-mod",
+      "languages": [
+        "Lua"
+      ],
+      "shape": "gamemode",
+      "summary": "A Garry’s Mod parkour gamemode with movement and camera behavior tied to host APIs.",
+      "context_evidence": [
+        "readme",
+        "wallrun"
+      ],
+      "mechanics": [
+        {
+          "id": "wall-run",
+          "text": "Purist wall-running checks and state update.",
+          "evidence": [
+            "wallrun"
+          ]
+        },
+        {
+          "id": "vault",
+          "text": "Vault variants and SetupMove hook.",
+          "evidence": [
+            "vault"
+          ]
+        },
+        {
+          "id": "wall-climb",
+          "text": "Climbing movement logic in the gamemode.",
+          "evidence": [
+            "climb"
+          ]
+        }
+      ],
+      "integration": {
+        "text": "Integrates through Garry’s Mod movement hooks, player state, traces and camera hooks. Reusing behavior in another engine requires translating those dependencies.",
+        "evidence": [
+          "wallrun",
+          "vault"
+        ]
+      },
+      "requirements": [
+        {
+          "text": "The README installs the project as a Garry’s Mod gamemode.",
+          "evidence": [
+            "readme"
+          ]
+        },
+        {
+          "text": "Wall-running calls player/movement methods and util.TraceLine.",
+          "evidence": [
+            "wallrun"
+          ]
+        }
+      ],
+      "limitations": [
+        {
+          "text": "The source anchors are pieces of a full gamemode, not a standalone collision-and-input API.",
+          "evidence": [
+            "wallrun",
+            "vault"
+          ]
+        },
+        {
+          "text": "The reviewed snapshot contains a code license declaration; bundled asset provenance was not audited.",
+          "evidence": [
+            "license",
+            "readme"
+          ]
+        }
+      ],
+      "license": {
+        "status": "declared",
+        "declarations": [
+          {
+            "identifier": "WTFPL",
+            "evidence": [
+              "license"
+            ]
+          }
+        ],
+        "note": "The root LICENSE declares WTFPL. This records the declaration only; it does not audit bundled asset terms."
+      },
+      "runtime_check": {
+        "status": "not-run",
+        "evidence": null
+      },
+      "evidence": [
+        {
+          "id": "readme",
+          "kind": "documentation",
+          "path": "README.md",
+          "url": "https://github.com/JonnyBro/beatrun/blob/d176729c9bdd2491208a9bd2e1aee0f4b715f25f/README.md",
+          "sha256": "057863b828348d66335aaaa47a36a067ec397796c9c39a27735d28afbb22f8fa",
+          "symbols": []
+        },
+        {
+          "id": "license",
+          "kind": "license",
+          "path": "LICENSE",
+          "url": "https://github.com/JonnyBro/beatrun/blob/d176729c9bdd2491208a9bd2e1aee0f4b715f25f/LICENSE",
+          "sha256": "2de3e602c846af9d165fa9113f1ccc1286ff3757983b678625f0d0f442cd89da",
+          "symbols": []
+        },
+        {
+          "id": "wallrun",
+          "kind": "code",
+          "path": "gamemodes/beatrun/gamemode/sh/WallrunME.lua",
+          "url": "https://github.com/JonnyBro/beatrun/blob/d176729c9bdd2491208a9bd2e1aee0f4b715f25f/gamemodes/beatrun/gamemode/sh/WallrunME.lua",
+          "sha256": "1b65d105a7e4028584db91d1fba551011b9519fc1477d4df123bfd80e725c3de",
+          "symbols": [
+            "PuristWallrunningCheck",
+            "PuristWallrunningThink",
+            "util.TraceLine"
+          ]
+        },
+        {
+          "id": "vault",
+          "kind": "code",
+          "path": "gamemodes/beatrun/gamemode/sh/Vaulting.lua",
+          "url": "https://github.com/JonnyBro/beatrun/blob/d176729c9bdd2491208a9bd2e1aee0f4b715f25f/gamemodes/beatrun/gamemode/sh/Vaulting.lua",
+          "sha256": "5a8a7bbbeeebae1c094193839e7a3f572701f1f44dd5433a2d71214cee488752",
+          "symbols": [
+            "Vault1",
+            "BeatrunVaulting"
+          ]
+        },
+        {
+          "id": "climb",
+          "kind": "code",
+          "path": "gamemodes/beatrun/gamemode/sh/Climb.lua",
+          "url": "https://github.com/JonnyBro/beatrun/blob/d176729c9bdd2491208a9bd2e1aee0f4b715f25f/gamemodes/beatrun/gamemode/sh/Climb.lua",
+          "sha256": "f1e0151d522719658d50cb2e0b5d63a8acbb7c268936c9559af538d9cd8759cb",
+          "symbols": []
+        }
+      ]
+    },
+    {
+      "id": "noshot",
+      "name": "NOSHOT First Person Controller",
+      "repository": "theRealUnd3rdog/Godot_Noshot_Controller",
+      "revision": "15ac57ce0b7f1ab94c264fecd14e87732c8264fb",
+      "reviewed_at": "2026-10-13",
+      "engine": "godot",
+      "languages": [
+        "C#"
+      ],
+      "shape": "controller-project",
+      "summary": "A Godot C# movement project with dedicated wall-running, vertical wall-running and vault states.",
+      "context_evidence": [
+        "readme",
+        "wallrun"
+      ],
+      "mechanics": [
+        {
+          "id": "wall-run",
+          "text": "Wall-running state uses ray checks, friction and a jump exit.",
+          "evidence": [
+            "wallrun"
+          ]
+        },
+        {
+          "id": "wall-climb",
+          "text": "Vertical wall-running state is present.",
+          "evidence": [
+            "wallclimb"
+          ]
+        },
+        {
+          "id": "vault",
+          "text": "Vault state integrates with the movement state machine.",
+          "evidence": [
+            "vault"
+          ]
+        }
+      ],
+      "integration": {
+        "text": "Use or adapt the Godot player scene, movement class and state machine; the wall-running state delegates collision queries and velocity to PlayerMovement.",
+        "evidence": [
+          "wallrun",
+          "movement"
+        ]
+      },
+      "requirements": [
+        {
+          "text": "The setup section requires Godot 4.3 Mono/.NET; the introduction mentions 4.2, so version claims should retain that distinction.",
+          "evidence": [
+            "readme",
+            "project"
+          ]
+        },
+        {
+          "text": "Movement is written in C# and the README specifies Jolt physics.",
+          "evidence": [
+            "readme",
+            "wallrun"
+          ]
+        }
+      ],
+      "limitations": [
+        {
+          "text": "This is not a native GDScript controller; a GDScript-only project would require an adaptation.",
+          "evidence": [
+            "wallrun",
+            "project"
+          ]
+        },
+        {
+          "text": "Scene/state-machine integration is required; source review did not establish a direct import into an existing player controller.",
+          "evidence": [
+            "wallrun",
+            "movement"
+          ]
+        }
+      ],
+      "license": {
+        "status": "declared",
+        "declarations": [
+          {
+            "identifier": "MIT",
+            "evidence": [
+              "license"
+            ]
+          }
+        ],
+        "note": "The root LICENSE declares MIT. The README separately describes project assets as CC0; this project has not audited asset provenance."
+      },
+      "runtime_check": {
+        "status": "not-run",
+        "evidence": null
+      },
+      "evidence": [
+        {
+          "id": "readme",
+          "kind": "documentation",
+          "path": "README.md",
+          "url": "https://github.com/theRealUnd3rdog/Godot_Noshot_Controller/blob/15ac57ce0b7f1ab94c264fecd14e87732c8264fb/README.md",
+          "sha256": "afc0c227428c8835fb58a050d13e5860f7c46b3e2db152199f0e5bf268a2ae50",
+          "symbols": []
+        },
+        {
+          "id": "license",
+          "kind": "license",
+          "path": "LICENSE",
+          "url": "https://github.com/theRealUnd3rdog/Godot_Noshot_Controller/blob/15ac57ce0b7f1ab94c264fecd14e87732c8264fb/LICENSE",
+          "sha256": "750fbba817ce04affd0e3fc47d9f0fdc75a63b52e484a17e1b862ccae05db8fc",
+          "symbols": []
+        },
+        {
+          "id": "project",
+          "kind": "documentation",
+          "path": "FirstGodotProject.csproj",
+          "url": "https://github.com/theRealUnd3rdog/Godot_Noshot_Controller/blob/15ac57ce0b7f1ab94c264fecd14e87732c8264fb/FirstGodotProject.csproj",
+          "sha256": "094cc44c5a674256fb355e39375bbe837756e3e27c7ae8fbc94ab2baace0a6e9",
+          "symbols": []
+        },
+        {
+          "id": "wallrun",
+          "kind": "code",
+          "path": "Scripts/PlayerMovementStates/PlayerWallrun.cs",
+          "url": "https://github.com/theRealUnd3rdog/Godot_Noshot_Controller/blob/15ac57ce0b7f1ab94c264fecd14e87732c8264fb/Scripts/PlayerMovementStates/PlayerWallrun.cs",
+          "sha256": "4291f2cac0008a8dd9a6e52d03ddc0ed09be3e88cac617c904f35a3a4ea15b45",
+          "symbols": [
+            "PlayerWallrun",
+            "PhysicsUpdate",
+            "SendRayInDirection"
+          ]
+        },
+        {
+          "id": "wallclimb",
+          "kind": "code",
+          "path": "Scripts/PlayerMovementStates/PlayerVerticalWallrun.cs",
+          "url": "https://github.com/theRealUnd3rdog/Godot_Noshot_Controller/blob/15ac57ce0b7f1ab94c264fecd14e87732c8264fb/Scripts/PlayerMovementStates/PlayerVerticalWallrun.cs",
+          "sha256": "c47303a7817bed19d145503d886a3e8e1d018991435297e82edd3ef7342450f6",
+          "symbols": [
+            "PlayerVerticalWallrun"
+          ]
+        },
+        {
+          "id": "vault",
+          "kind": "code",
+          "path": "Scripts/PlayerMovementStates/PlayerVault.cs",
+          "url": "https://github.com/theRealUnd3rdog/Godot_Noshot_Controller/blob/15ac57ce0b7f1ab94c264fecd14e87732c8264fb/Scripts/PlayerMovementStates/PlayerVault.cs",
+          "sha256": "9c92ebd92d4a801bfa586cdf3c2a42da9dfedacc8ebc9e0c2cfde1299b2159c6",
+          "symbols": [
+            "PlayerVault"
+          ]
+        },
+        {
+          "id": "movement",
+          "kind": "code",
+          "path": "Scripts/PlayerMovement.cs",
+          "url": "https://github.com/theRealUnd3rdog/Godot_Noshot_Controller/blob/15ac57ce0b7f1ab94c264fecd14e87732c8264fb/Scripts/PlayerMovement.cs",
+          "sha256": "5c651d0e7462ed5770cfea1f87f8e5cf98b54d4e0a851327b74c121f4d651c59",
+          "symbols": [
+            "PlayerMovement"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "parks-edge",
+      "name": "Park’s Edge",
+      "repository": "uLmElKa/Park-s-Edge",
+      "revision": "7709f2bb130d9edd0b94b401e6604a8664b91988",
+      "reviewed_at": "2026-10-13",
+      "engine": "minecraft",
+      "languages": [
+        "Java"
+      ],
+      "shape": "mod",
+      "summary": "A Minecraft movement mod whose README describes Mirror’s Edge-inspired controls.",
+      "context_evidence": [
+        "readme",
+        "movement"
+      ],
+      "mechanics": [
+        {
+          "id": "wall-run",
+          "text": "Client movement controller contains wall-running state.",
+          "evidence": [
+            "movement"
+          ]
+        },
+        {
+          "id": "wall-climb",
+          "text": "The client controller contains climbing states; the README documents the controls.",
+          "evidence": [
+            "movement",
+            "readme"
+          ]
+        },
+        {
+          "id": "vault",
+          "text": "tryStartVault handles a vault attempt.",
+          "evidence": [
+            "movement"
+          ]
+        },
+        {
+          "id": "slide",
+          "text": "Client slide state has server-side pose messaging.",
+          "evidence": [
+            "movement",
+            "server"
+          ]
+        }
+      ],
+      "integration": {
+        "text": "Uses Minecraft player APIs, mixins and Architectury networking. The server handler receives movement actions; this is not evidence of validated multiplayer movement.",
+        "evidence": [
+          "movement",
+          "server"
+        ]
+      },
+      "requirements": [
+        {
+          "text": "The build properties target Minecraft 1.21.1 and list Fabric, NeoForge and Architectury versions. No loader build was tested here.",
+          "evidence": [
+            "versions"
+          ]
+        },
+        {
+          "text": "Implementation depends on Minecraft client/server player classes.",
+          "evidence": [
+            "movement",
+            "server"
+          ]
+        }
+      ],
+      "limitations": [
+        {
+          "text": "The author states compatibility and bugs are not established; the source was not run by this project.",
+          "evidence": [
+            "readme"
+          ]
+        },
+        {
+          "text": "Source manifest and public listing disagree on license declarations; do not silently choose one.",
+          "evidence": [
+            "manifest",
+            "listing"
+          ]
+        }
+      ],
+      "license": {
+        "status": "conflicting",
+        "declarations": [
+          {
+            "identifier": "CC0-1.0",
+            "evidence": [
+              "manifest"
+            ]
+          },
+          {
+            "identifier": "MIT",
+            "evidence": [
+              "listing"
+            ]
+          }
+        ],
+        "note": "Fabric manifest declares CC0-1.0; the CurseForge listing displayed MIT on the review date. No root license file was found. Clarification remains unresolved."
+      },
+      "runtime_check": {
+        "status": "not-run",
+        "evidence": null
+      },
+      "evidence": [
+        {
+          "id": "readme",
+          "kind": "documentation",
+          "path": "README.md",
+          "url": "https://github.com/uLmElKa/Park-s-Edge/blob/7709f2bb130d9edd0b94b401e6604a8664b91988/README.md",
+          "sha256": "bb126cc52165606f01edc6c4496c4db9dd6a9a78e382778be8d5f7d8d91f8df7",
+          "symbols": []
+        },
+        {
+          "id": "movement",
+          "kind": "code",
+          "path": "java/com/parkedge/client/MovementController.java",
+          "url": "https://github.com/uLmElKa/Park-s-Edge/blob/7709f2bb130d9edd0b94b401e6604a8664b91988/java/com/parkedge/client/MovementController.java",
+          "sha256": "f80ab894661df735a3881be2c8e8b5d12a2a4b07fe13417b6b9ae995308168a9",
+          "symbols": [
+            "MovementController",
+            "tryStartVault",
+            "tick",
+            "wallRunActive"
+          ]
+        },
+        {
+          "id": "server",
+          "kind": "code",
+          "path": "java/com/parkedge/network/ServerMovementHandler.java",
+          "url": "https://github.com/uLmElKa/Park-s-Edge/blob/7709f2bb130d9edd0b94b401e6604a8664b91988/java/com/parkedge/network/ServerMovementHandler.java",
+          "sha256": "a6ca72bd97962044e3f324bd92d3778e178b06f082e8dcaee756ee5adcf33f0d",
+          "symbols": [
+            "ServerMovementHandler",
+            "register"
+          ]
+        },
+        {
+          "id": "versions",
+          "kind": "documentation",
+          "path": "gradle.properties",
+          "url": "https://github.com/uLmElKa/Park-s-Edge/blob/7709f2bb130d9edd0b94b401e6604a8664b91988/gradle.properties",
+          "sha256": "a3d4a0cbf527fbc733ab978132bebf3579e6d1045451518ac36a4292c3d73c6b",
+          "symbols": [
+            "minecraft_version = 1.21.1"
+          ]
+        },
+        {
+          "id": "manifest",
+          "kind": "documentation",
+          "path": "fabric/src/main/resources/fabric.mod.json",
+          "url": "https://github.com/uLmElKa/Park-s-Edge/blob/7709f2bb130d9edd0b94b401e6604a8664b91988/fabric/src/main/resources/fabric.mod.json",
+          "sha256": "9d924ff30e970e4b0a18477981f20d54a35223f48e72405b91eadbd3d1577f9a",
+          "symbols": [
+            "CC0-1.0"
+          ]
+        },
+        {
+          "id": "listing",
+          "kind": "external-listing",
+          "path": null,
+          "url": "https://www.curseforge.com/minecraft/mc-mods/parks-edge",
+          "sha256": null,
+          "symbols": []
+        }
+      ]
+    },
+    {
+      "id": "still-alive",
+      "name": "Still Alive / Mirror’s Edge Unity port",
+      "repository": "Eideren/Mirror-s-Edge",
+      "revision": "f34b689435293a0df446d8ee20a7cf9352364389",
+      "reviewed_at": "2026-10-13",
+      "engine": "unity",
+      "languages": [
+        "C#"
+      ],
+      "shape": "game-port",
+      "summary": "A Unity port with converted move classes and project-level integration.",
+      "context_evidence": [
+        "readme",
+        "wallrun"
+      ],
+      "mechanics": [
+        {
+          "id": "wall-run",
+          "text": "Converted wall-running move class and state transitions.",
+          "evidence": [
+            "wallrun"
+          ]
+        },
+        {
+          "id": "vault",
+          "text": "Converted speed-vault move class and state transitions.",
+          "evidence": [
+            "vault"
+          ]
+        }
+      ],
+      "integration": {
+        "text": "Move classes depend on the converted TdGame pawn, physics, animation and integration types. This is a full port context, not an isolated Unity character-controller package.",
+        "evidence": [
+          "wallrun",
+          "vault"
+        ]
+      },
+      "requirements": [
+        {
+          "text": "The README targets Unity 2022.3 and describes Git LFS requirements for cloning.",
+          "evidence": [
+            "readme",
+            "version"
+          ]
+        },
+        {
+          "text": "Reviewed move classes rely on converted game framework types.",
+          "evidence": [
+            "wallrun",
+            "vault"
+          ]
+        }
+      ],
+      "limitations": [
+        {
+          "text": "The README lists outstanding character-controller bugs and frame-rate concerns.",
+          "evidence": [
+            "readme"
+          ]
+        },
+        {
+          "text": "A move class alone does not establish completeness of native behavior or successful integration into another Unity game.",
+          "evidence": [
+            "wallrun",
+            "vault"
+          ]
+        }
+      ],
+      "license": {
+        "status": "unknown",
+        "declarations": [],
+        "note": "No root license file was found during inspection of this revision; terms remain unresolved."
+      },
+      "runtime_check": {
+        "status": "not-run",
+        "evidence": null
+      },
+      "evidence": [
+        {
+          "id": "readme",
+          "kind": "documentation",
+          "path": "README.md",
+          "url": "https://github.com/Eideren/Mirror-s-Edge/blob/f34b689435293a0df446d8ee20a7cf9352364389/README.md",
+          "sha256": "28c6a0ad79a9b2d0cdbde2e88fd4ce4a9711fe741f3dad3ee94d79309d0848fc",
+          "symbols": []
+        },
+        {
+          "id": "version",
+          "kind": "documentation",
+          "path": "ProjectSettings/ProjectVersion.txt",
+          "url": "https://github.com/Eideren/Mirror-s-Edge/blob/f34b689435293a0df446d8ee20a7cf9352364389/ProjectSettings/ProjectVersion.txt",
+          "sha256": "93c068ba5a7f5936554ec09fc9f0cf00da5316ae58b6f7360fa0a667d94bc9f2",
+          "symbols": []
+        },
+        {
+          "id": "wallrun",
+          "kind": "code",
+          "path": "Assets/Source/Integration/Converted/TdGame/TdMove_WallRun.cs",
+          "url": "https://github.com/Eideren/Mirror-s-Edge/blob/f34b689435293a0df446d8ee20a7cf9352364389/Assets/Source/Integration/Converted/TdGame/TdMove_WallRun.cs",
+          "sha256": "9d9f5120381da6e95b29b783ecbcc5e86ea6ea8727f15a1ab57192dc698da886",
+          "symbols": [
+            "TdMove_WallRun",
+            "CanDoMove",
+            "StartMove"
+          ]
+        },
+        {
+          "id": "vault",
+          "kind": "code",
+          "path": "Assets/Source/Integration/Converted/TdGame/TdMove_SpeedVault.cs",
+          "url": "https://github.com/Eideren/Mirror-s-Edge/blob/f34b689435293a0df446d8ee20a7cf9352364389/Assets/Source/Integration/Converted/TdGame/TdMove_SpeedVault.cs",
+          "sha256": "238ed771dbaa57fcfb03efe7177680f100a25349162eccfb414718ff68be6262",
+          "symbols": [
+            "TdMove_SpeedVault",
+            "CanDoMove",
+            "StartMove"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dani-fps",
+      "name": "Dani simple FPS movement",
+      "repository": "DaniDevy/FPS_Movement_Rigidbody",
+      "revision": "e2688501e1309cc35f6d8f14c0c1bbc8146a86b9",
+      "reviewed_at": "2026-10-13",
+      "engine": "unity",
+      "languages": [
+        "C#"
+      ],
+      "shape": "movement-baseline",
+      "summary": "A small Rigidbody-based movement script used as a simpler baseline, without reviewed wall-running code.",
+      "context_evidence": [
+        "readme",
+        "movement"
+      ],
+      "mechanics": [
+        {
+          "id": "jump",
+          "text": "Jump applies Rigidbody forces and enforces a jump cooldown.",
+          "evidence": [
+            "movement"
+          ]
+        },
+        {
+          "id": "slide",
+          "text": "StartCrouch adds a slide force; CounterMovement changes crouched braking.",
+          "evidence": [
+            "movement"
+          ]
+        }
+      ],
+      "integration": {
+        "text": "Attach and configure the Unity MonoBehaviour with a Rigidbody, transforms and input mappings. The script reads Unity input and collision callbacks directly.",
+        "evidence": [
+          "movement"
+        ]
+      },
+      "requirements": [
+        {
+          "text": "Unity C# and Rigidbody physics; setup instructions are linked as a tutorial from the README.",
+          "evidence": [
+            "movement",
+            "readme"
+          ]
+        }
+      ],
+      "limitations": [
+        {
+          "text": "The inspected script implements jumping and crouch sliding; the seed does not identify a wall-running implementation here.",
+          "evidence": [
+            "movement"
+          ]
+        },
+        {
+          "text": "Source is a basic movement reference, with no runtime observation of behavior in a current Unity version.",
+          "evidence": [
+            "readme",
+            "movement"
+          ]
+        }
+      ],
+      "license": {
+        "status": "declared",
+        "declarations": [
+          {
+            "identifier": "MIT",
+            "evidence": [
+              "license"
+            ]
+          }
+        ],
+        "note": "The root LICENSE declares MIT."
+      },
+      "runtime_check": {
+        "status": "not-run",
+        "evidence": null
+      },
+      "evidence": [
+        {
+          "id": "readme",
+          "kind": "documentation",
+          "path": "README.md",
+          "url": "https://github.com/DaniDevy/FPS_Movement_Rigidbody/blob/e2688501e1309cc35f6d8f14c0c1bbc8146a86b9/README.md",
+          "sha256": "a8f3ce745de7f4c8b9c1ec90be7f514e0719d10aeadd23460cfd0e496a10d70d",
+          "symbols": []
+        },
+        {
+          "id": "license",
+          "kind": "license",
+          "path": "LICENSE",
+          "url": "https://github.com/DaniDevy/FPS_Movement_Rigidbody/blob/e2688501e1309cc35f6d8f14c0c1bbc8146a86b9/LICENSE",
+          "sha256": "1d26a35684997aa1c62c59813839f7c118d1e57258dd89102d29d7bc506bfa6d",
+          "symbols": []
+        },
+        {
+          "id": "movement",
+          "kind": "code",
+          "path": "PlayerMovement.cs",
+          "url": "https://github.com/DaniDevy/FPS_Movement_Rigidbody/blob/e2688501e1309cc35f6d8f14c0c1bbc8146a86b9/PlayerMovement.cs",
+          "sha256": "9dc671764aa3100d987819a70ee835a361f55d4cdb87b7715d5026ef8f9c0e26",
+          "symbols": [
+            "PlayerMovement",
+            "Movement",
+            "Jump",
+            "StartCrouch",
+            "CounterMovement"
+          ]
+        }
+      ]
+    }
+  ]
+}

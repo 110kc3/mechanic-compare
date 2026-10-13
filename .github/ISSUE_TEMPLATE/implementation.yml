@@ -1,0 +1,17 @@
+name: Suggest or correct an implementation
+description: Add source evidence or correct a comparison fact.
+title: "[Evidence] "
+body:
+  - type: input
+    id: source
+    attributes:
+      label: Implementation and source URL
+    validations:
+      required: true
+  - type: textarea
+    id: claim
+    attributes:
+      label: Mechanic, correction or constraint
+      description: Exact commit, file/symbol, engine requirements and declared terms when available. State whether you tested it or only inspected source.
+    validations:
+      required: true
