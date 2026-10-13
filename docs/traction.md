@@ -28,6 +28,6 @@ This is a decision threshold, not a prediction. If exposure is too low, record t
 
 | Date | Exposure | Human use | Contributions | Benchmark | Decision |
 | --- | --- | --- | --- | --- | --- |
-| 2026-10-13 | Public seed prepared; no exposure measured | None established | None established | Not run | Publish seed; await evidence |
+| 2026-10-13 | [Public seed published](https://github.com/110kc3/mechanic-compare); no exposure measured | None established | None established | Not run | Await evidence at the manual checkpoint |
 
 Promotion and outreach are owner actions. Creating a public repository does not imply posting to communities or contacting maintainers.
