@@ -8,7 +8,7 @@ Publish a public six-record parkour comparison with pinned evidence, machine-rea
 
 Seed implementation and documentation complete. Local schema/reference/generated-output checks passed for six records and ten briefs; 29 pinned files passed hash and navigation-symbol checks. Four invalid evidence/runtime cases were rejected, and Godot C# versus GDScript-only filter smoke checks passed.
 
-The seed is public on main at https://github.com/110kc3/mechanic-compare (launch commit b225d2c65a4801a6d412a39560a23b58e97be841). GitHub Actions verification remains unobserved/pending for the impending publication-status commit: https://github.com/110kc3/mechanic-compare/actions?query=branch%3Amain. At the next session inspect the latest main commit/run once; do not wait for CI after pushing.
+The seed is public on main at https://github.com/110kc3/mechanic-compare (launch commit b225d2c65a4801a6d412a39560a23b58e97be841). Publication-status commit `d5e569d` passed [CI run 38443111532](https://github.com/110kc3/mechanic-compare/actions/runs/38443111532) at the follow-up check.
 
 ## Next accepted work
 
